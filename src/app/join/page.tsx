@@ -1,4 +1,4 @@
-import NavBar from './_components/navbar';
+import NavBar from '../_components/navbar';
  
 export default async function Page() { 
 	try {
