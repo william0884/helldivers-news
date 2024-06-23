@@ -1,5 +1,10 @@
 import NavBar from '../_components/navbar';
 
+interface NewsFeedItem {
+    id: string;
+    message: string;
+}
+
 async function getWarData() {
 	const res = await fetch('https://api.helldivers2.dev/raw/api/WarSeason/current/WarID')
 
@@ -18,7 +23,7 @@ async function getNewsFeedData(warID : string) {
 	}
 	return res.json();
 } 
-export default async function Page() { 
+export default async function Page(feednew : NewsFeedItem) { 
 	try {
 		const warData = await getWarData();
 		const newsFeedData = await getNewsFeedData(warData.id);
