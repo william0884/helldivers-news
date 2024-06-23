@@ -5,7 +5,11 @@ interface NewsFeedItem {
     message: string;
 }
 
-async function getWarData() {
+interface WarData {
+	id: string;
+}
+
+async function getWarData(): Promise<WarData> {
 	const res = await fetch('https://api.helldivers2.dev/raw/api/WarSeason/current/WarID')
 
 	if (!res.ok) {
@@ -15,7 +19,7 @@ async function getWarData() {
 	return res.json()
 }
 
-async function getNewsFeedData(warID : string) {
+async function getNewsFeedData(warID : string): Promise<NewsFeedItem[]> {
 	const res = await fetch(`https://api.helldivers2.dev/raw/api/NewsFeed/${warID}`);
 
 	if (!res.ok) {
@@ -23,7 +27,7 @@ async function getNewsFeedData(warID : string) {
 	}
 	return res.json();
 } 
-export default async function Page(feednew : NewsFeedItem) { 
+export default async function Page() { 
 	try {
 		const warData = await getWarData();
 		const newsFeedData = await getNewsFeedData(warData.id);
