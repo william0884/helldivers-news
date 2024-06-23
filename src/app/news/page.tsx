@@ -1,5 +1,7 @@
 import NavBar from '../_components/navbar';
 
+type WarID = number;
+
 async function getWarData() {
 	const res = await fetch('https://api.helldivers2.dev/raw/api/WarSeason/current/WarID')
 
